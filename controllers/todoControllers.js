@@ -41,7 +41,7 @@ const updateTodo = async (req, res) => {
   const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  res.status(200).json({ updatedTodo });
+  res.status(200).json(updatedTodo);
 };
 
 const deleteTodo = async (req, res) => {
@@ -61,7 +61,7 @@ const deleteTodo = async (req, res) => {
 
   const deletedTodo = await Todo.findByIdAndRemove(req.params.id);
 
-  res.status(200).json({ message: "Deleted successfully" });
+  res.status(200).json(deletedTodo);
 };
 
 module.exports = {
