@@ -7,6 +7,7 @@ const { protect } = require("../middleware/authMiddleware");
 const {
   getAllTodos,
   getTodos,
+  getTodoById,
   createTodo,
   updateTodo,
   deleteTodo,
@@ -16,7 +17,7 @@ router
   .route("/")
   .get(protect, getTodos)
   .post(protect, todoValidator, createTodo);
-router.route("/:id").put(protect, updateTodo).delete(protect, deleteTodo);
+router.route("/:id").put(protect, updateTodo).delete(protect, deleteTodo).get(protect, getTodoById);
 
 // for admin
 router.get("/getAllTodos", protect, adminValidator, getAllTodos);

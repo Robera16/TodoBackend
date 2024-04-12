@@ -13,6 +13,20 @@ const getTodos = async (req, res) => {
   res.status(200).json(todos);
 };
 
+
+const getTodoById = async (req, res) => {
+ 
+    const todoId = req.params.id;
+    const todo = await Todo.findOne({ _id: todoId, user: req.user.id });
+
+    if (!todo) {
+      return res.status(404).json({ msg: 'Todo not found' });
+    }
+    res.status(200).json(todo);
+  
+};
+
+
 const createTodo = async (req, res) => {
   const todos = await Todo.create({
     user: req.user.id,
@@ -67,6 +81,7 @@ const deleteTodo = async (req, res) => {
 module.exports = {
   getAllTodos,
   getTodos,
+  getTodoById,
   createTodo,
   updateTodo,
   deleteTodo,
